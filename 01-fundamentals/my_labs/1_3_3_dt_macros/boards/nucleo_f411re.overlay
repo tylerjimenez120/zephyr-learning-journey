@@ -1,0 +1,19 @@
+&leds {
+	external_led: led_ext {
+		gpios = <&gpioa 1 GPIO_ACTIVE_HIGH>;
+		label = "External LED";
+	};
+};
+
+/ {
+	aliases {
+		led1 = &external_led;
+	};
+
+	/* zephyr,user: built-in node for arbitrary application
+	 * config values, readable via DT_PROP, no custom binding
+	 * needed. */
+	zephyr,user {
+		blink-period-ms = <100>;
+	};
+};

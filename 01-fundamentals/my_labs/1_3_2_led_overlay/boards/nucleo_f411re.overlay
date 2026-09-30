@@ -1,0 +1,18 @@
+/*
+ * Overlay for Lab 1.3.2 -- extends the existing "leds" and "aliases"
+ * nodes from the official nucleo_f411re.dts board file to add a
+ * second, externally-wired LED, without modifying that file.
+ */
+
+&leds {
+	external_led: led_ext {
+		gpios = <&gpioa 1 GPIO_ACTIVE_HIGH>;
+		label = "External LED";
+	};
+};
+
+/ {
+	aliases {
+		led1 = &external_led;
+	};
+};
