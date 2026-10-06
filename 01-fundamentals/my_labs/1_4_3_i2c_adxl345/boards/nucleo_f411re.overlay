@@ -1,0 +1,15 @@
+/* Declare the ADXL345 as a child of i2c1 (Arduino header: PB8=SCL, PB9=SDA).
+ * The Sensor API is NOT enabled in prj.conf, so the in-tree ADXL345 driver
+ * is not built: the node only provides the bus + address to the I2C API. */
+&i2c1 {
+	adxl345: adxl345@53 {
+		compatible = "adi,adxl345";
+		reg = <0x53>; /* SDO tied to GND -> address 0x53 */
+		status = "okay";
+	};
+};
+
+
+//hay un dispositivo en i2c1, dirección 0x53
+
+//0x53 es la dirección I2C del dispositivo para comunicarse con él, y 0xE5 es el ID del chip, que se lee del registro DEVID para confirmar el modelo.
