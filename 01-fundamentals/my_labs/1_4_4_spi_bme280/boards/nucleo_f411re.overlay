@@ -1,0 +1,13 @@
+/* BME280 as a child of spi1 (Arduino header: D13=SCK, D12=MISO, D11=MOSI).
+ * The Sensor API is NOT enabled, so the in-tree driver is not built: the
+ * node only provides the bus + chip select + max frequency to the SPI API. */
+&spi1 {
+	cs-gpios = <&gpiob 6 GPIO_ACTIVE_LOW>; /* D10 = chip select */
+
+	bme280: bme280@0 {
+		compatible = "bosch,bme280";
+		reg = <0>;                      /* index 0 in cs-gpios */
+		spi-max-frequency = <1000000>;  /* 1 MHz (sensor max: 10 MHz) */
+		status = "okay";
+	};
+};
